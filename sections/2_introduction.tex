@@ -1,0 +1,35 @@
+In 2011 Poker Stars and Full Tilt Poker, the biggest poker rooms at the time, were shut down by the FBI due to violating the Unlawful Internet Gambling Enforcement Act \cite{treasury11} and engaging 
+ 
+in bank fraud and money laundering to process transfers to and from their customers. Players were unable to access their balances, and the day is remembered as “Black Friday”.
+
+In 2008, Satoshi Nakamoto introduced Bitcoin  \cite{nakamoto08} as a Peer-to-Peer Electronic Cash System that allows to hold balances and do transfers without relying on a central counterparty. Bitcoin could have prevented the “Block Friday”, if players would have been able to use it in online poker games.
+ 
+Unfortunately, interacting with a Proof-of-Work based decentralized network entails long waiting times due to the need to be secure against reversal of the ledger history, which would make real-time games like poker prohibitively slow.
+
+
+\subsection{Related Works}
+In \cite{shamir81} Shamir, Rivest, and Adelman introduce mental poker, a protocol to play a fair hand of poker over distance without a trusted third party. This work gave rise to a subfield of cryptography with the goal of creating methods for parties to jointly compute a function over their inputs while keeping those inputs private. [wiki MPC]
+ 
+As demonstrated by Cleve \cite{cleve86}, fair multiparty computation without an honest majority is impossible in the standard model of communication. With the introduction of Bitcoin \cite{nakamoto08}, the academic study of decentralized cryptocurrencies gave rise to a line of research that seeks to impose fairness in secure multiparty computation (MPC) by means of monetary penalties [6].
+ 
+A recent work by Kumaresan and Bentov \cite{bentov14} showed a Bitcoin based scheme in which the parties run an initial setup phase requiring interaction with the cryptocurrency network, but thereafter they engage in many fair secure computation executions, communicating only among themselves for as long as all parties are honest.
+ 
+In \cite{bentov17} Bentov Kumaresan Miller introduce efficient protocols for amortized secure multiparty computation with  stateful contracts, allowing first instantaneous poker games. 
+
+\subsection{Our Contributions}
+ 
+\textbf{Ability to rotate in and out of payment channel:} parties have the ability to join and leave the channel without affecting gameflow or security of funds.
+ 
+\textbf{Ability to rebuy:} When a player runs out of money, he is kept in the channel and has the ability to rebuy, by sending another token transaction.
+
+\textbf{Real-time game:} While there is a large body of work on efficient mental poker schemes, to the best of our knowledge we are the first to provide a working implementation that has an acceptable user experience.
+
+\subsection{Completeness of Protocol}
+
+We do not present a complete protocol for Mental Poker, but limit the solution to management of funds. The reasons are the following:
+ 
+\textbf{Lack of dropout tolerance:} Roca et al. \cite{roca05} and few other propose schemes to allow the game to continue when a player disconnects and is unable to reveal a commitment. We intend to address the integration of secure computation in future versions.
+ 
+\textbf{Cost of execution:} according to \cite{bentov17} the total gas cost of the NIZK verifier \cite{damgard06} is 1.3M, which corresponds to about USD 3 the time of writing.
+
+The generation of the random number and the evaluation of the hand are currently executed by an oracle. The oracle has special permissions to 
