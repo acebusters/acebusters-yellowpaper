@@ -1,5 +1,7 @@
-We present an efficient protocol to rotate in and out of an active payment channel including secure cash distribution. Of this, a busy poker table with players joining and leaving is a prime example.
+We present an efficient protocol to rotate in and out of an active state channel including secure cash distribution. Of this, a busy cash-game poker table with players sitting down and standing up is a prime example.
  
-Our protocol has an initial phase where a party interact with a cryptocurrency network, that then enables it to interact only with the other participants of the channel over the course of playing many poker hands. At any time a participant can securely rotate out of the payment channel without interrupting its execution.
+Our protocol has an initial phase where a participant interact with the cryptocurrency network to join a state channel. After that, new and previous participants needs to communicate only with each other over the course of many interactions. At any time a participant can signal intention to leave the state channel and rotate out from the channel without interrupting the ongoing message exchange.
  
-We describe the stateful contract model and the security notions that our protocol accomplishes. Moreover, we provide a reference implementation in Solidity for the stateful contract that our protocol is based on. In comparison to existing payment channels, our multi-party state channels implementation is more efficient and has additional features.
+We describe the stateful contract model and the security notions that our protocol accomplishes. Moreover, we provide a reference implementation in Solidity for the stateful contract that our protocol is based on.
+
+In comparison to existing payment channels, our multi-party state channels (MSC) implementation is more efficient and has additional features.

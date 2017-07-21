@@ -1,0 +1,37 @@
+\section{Introduction}
+In 2011 Poker Stars and Full Tilt Poker, the biggest poker rooms at the time, were shut down by the FBI due to violating the Unlawful Internet Gambling Enforcement Act \cite{treasury11} and engaging in bank fraud and money laundering. Players were unable to access their balances, and the day is remembered as “Black Friday”.
+
+In 2008, Satoshi Nakamoto introduced Bitcoin  \cite{nakamoto08} as a Peer-to-Peer Electronic Cash System that allows to hold balances and do transfers without relying on a central counterparty. Bitcoin could have prevented the “Block Friday”, if players would have been able to use it in online poker games.
+
+Unfortunately, interacting with a Proof-of-Work based decentralized network entails waiting times due to the need to be secure against reversal of the ledger history, which would make real-time games like poker prohibitively slow.
+
+
+\subsection{Related Works}
+In \cite{shamir81} Shamir, Rivest, and Adelman introduce mental poker, a set of cryptographic problems to play a fair hand of poker over distance without a trusted third party\cite{wikiMental}. This work gave rise to a subfield of cryptography with the goal of creating methods for parties to jointly compute a function over their inputs while keeping those inputs private. \cite{wikiMPC}
+ 
+As demonstrated by Cleve \cite{cleve86}, fair multiparty computation without an honest majority is impossible in the standard model of communication. However, with the introduction of Bitcoin \cite{nakamoto08}, the academic study of decentralized cryptocurrencies gave rise to a line of research that seeks to impose fairness in secure multiparty computation (MPC) by means of monetary penalties\cite{bentov14}.
+ 
+A recent work by Kumaresan and Bentov \cite{bentov14} showed a Bitcoin based scheme in which the parties run an initial setup phase requiring interaction with the cryptocurrency network, but thereafter they engage in many fair secure computation executions, communicating only among themselves for as long as all parties are honest.
+ 
+In \cite{bentov17} Bentov et al. introduce efficient protocols for amortized secure multiparty computation with  stateful contracts, allowing first instantaneous poker games. 
+
+\subsection{Our Contributions}
+
+There is a large body of work on efficient mental poker schemes with the usual assumption is that all participants of a poker game start and end at the same time. While this might be true for tournaments, in cash-games players can sit down at a table or leave a table at any time. We extend existing schemes with the following features:
+ 
+\textbf{Asynronous channel participation:} all participants have the ability to join and leave the channel at any time without affecting message flow or security of funds.
+ 
+\textbf{Ability to rebuy:} When a player runs out of money, he is kept in the channel and has the ability to rebuy by sending another token transaction.
+
+\textbf{User Experience:} To the best of our knowledge we are the first to provide a working implementation that has an acceptable user experience for cash-game tables.
+
+\subsection{Completeness of Protocol}
+
+We do not present a complete integration of the protocol with MPC algorithms in this paper, but limit the solution to management of funds. The reasons are the following:
+ 
+\textbf{Lack of dropout tolerance:} Roca et al. \cite{roca05} and few other propose schemes to allow the game to continue when a player disconnects and is unable to reveal a commitment. We intend to address the integration of secure computation in future versions.
+ 
+\textbf{Cost of execution:} according to \cite{bentov17} the total gas cost of the NIZK verifier \cite{damgard06} is 1.3M, which corresponds to about USD 3 the time of writing.
+
+The evaluation of the hands is currently performed by an oracle. An oracle is an external service that has special permissions in the smart contracts to provide data.
+
