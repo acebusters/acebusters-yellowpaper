@@ -1,7 +1,7 @@
-We present an efficient protocol to rotate in and out of an active state channel including secure cash distribution. Of this, a busy cash-game poker table with players sitting down and standing up is a prime example.
+We present a payment channel concept for up to 10 participants and an efficient protocol to rotate in and out of this multiparty state channel including secure cash distribution. Of this, a busy cash-game poker table with players sitting down and standing up is a prime example.
  
-Our protocol has an initial phase where a participant interact with the cryptocurrency network to join a state channel. After that, new and previous participants needs to communicate only with each other over the course of many interactions. At any time a participant can signal intention to leave the state channel and rotate out from the channel without interrupting the ongoing message exchange.
+Our protocol has an initial phase where a participant interacts with the blockchain to join a state channel. After that, new and previous participants need to communicate only with each other over the course of many message exchanges. At any time a participant can signal intention to leave the state channel and eventually rotate out from the channel without interrupting the ongoing message flow or affecting the security of funds.
  
-We describe the stateful contract model and the security notions that our protocol accomplishes. Moreover, we provide a reference implementation in Solidity for the stateful contract that our protocol is based on.
+We describe the stateful contract model and the security notions that our protocol accomplishes. Moreover, we provide a reference implementation as smart contract in Solidity.
 
-In comparison to existing payment channels, our multi-party state channels (MSC) implementation is more efficient and has additional features.
+In comparison to existing payment channels, our multiparty state channels are more efficient and have additional features.

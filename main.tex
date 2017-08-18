@@ -251,8 +251,6 @@
 
 
 
-
-
 % *** SUBFIGURE PACKAGES ***
 %\usepackage[tight,footnotesize]{subfigure}
 % subfigure.sty was written by Steven Douglas Cochran. This package makes it
@@ -345,6 +343,9 @@
 % (Unless specifically asked to do so by the journal or conference you plan
 % to submit to, of course. )
 
+\let\labelindent\relax
+\usepackage{enumitem}
+
 
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
@@ -360,9 +361,10 @@
 % author names and affiliations
 % use a multiple column layout for up to three different
 % affiliations
-\author{\IEEEauthorblockN{Helge Wieding}
-\IEEEauthorblockA{Email: helge@acebusters.com}
-\and
+\author{
+% \IEEEauthorblockN{Helge Wieding}
+% \IEEEauthorblockA{Email: helge@acebusters.com}
+% \and
 \IEEEauthorblockN{Johann Barbie}
 \IEEEauthorblockA{Email: johann@acebusters.com}}
 % \and
@@ -425,7 +427,7 @@
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-state-channels, etheureum, poker.
+state channels, smart contract, blockchain, poker.
 \end{IEEEkeywords}
 
 
