@@ -55,7 +55,7 @@ To be able to operate the channel with multiple parties and \(O(n)\) size of dep
 
 Commitments by participants carry a value, but do not have a specific recipient. Each higher value commitment by a participant replaces a lower one. When results of secure computation become available an oracle evaluates the data and issue a corresponding distribution receipt, reassigning the values from the participants' commitments to the winner(s) deducted from the multiparty computation.
 
-Multiple rounds of commitments and distributions (hands played) can happen among the participants of the multiparty state channel. These rounds are numbered by a strictly increasing identifier (handId). Figure \ref{mpc_settle} depicts that, as long as all parties agree on a final settlement, the protocol is equivalent to the two-party channel:
+Multiple rounds of commitments and distributions (hands played) can happen among the participants of the multiparty state channel. These rounds are numbered by a strictly increasing identifier (\(handId\)). Figure \ref{mpc_settle} depicts that, as long as all parties agree on a final settlement, the protocol is equivalent to the two-party channel:
 
 \begin{figure}[!ht]
 \centering
@@ -71,7 +71,7 @@ Multiple rounds of commitments and distributions (hands played) can happen among
 \item Alice, Bob and Charlie mutually agree on a resolution. The resolution sums up the value transferred over all rounds performed since the start of the channel. The smart contract evaluates the resolution and updates the balances of all participants. 
 \end{enumerate}
 
-Whenever the balances are update also the latest handId is updated in the state of the contract. This process is called netting. The netting can happen when all parties agree through resolution, or when there is disagreement, through dispute. The dispute is executed as depicted in figure \ref{mpc_dispute}.
+Whenever the balances are update also the latest \(handId\) is updated in the state of the contract. This process is called netting. The netting can happen when all parties agree through resolution, or when there is disagreement, through dispute. The dispute is executed as depicted in figure \ref{mpc_dispute}.
 
 \begin{figure}[!ht]
 \centering
@@ -86,7 +86,7 @@ Whenever the balances are update also the latest handId is updated in the state 
 \item A round of commitment and distribution executes. In the round, the participants repeatedly bet value by signing receipts about new commitments and broadcasting them. The round is  closed by the distribution receipt, which awards the committed value to the winner(s).
 \item Bob signals to leave the state channel, but is unable to sign the resolution due to network issues. The challenge period is triggered in the contract.
 \item The participants submit receipts of commitments and distributions to the contract.
-\item The smart contract sums up the receipts over all rounds since the last netting and updates the balances of all participants. Once the netting progresses beyond the handId at which Bob signaled leaving, he is payed out and removed from the contract.
+\item The smart contract sums up the receipts over all rounds since the last netting and updates the balances of all participants. Once the netting progresses beyond the \(handId\) at which Bob signaled leaving, he is payed out and removed from the contract.
 \item During the challenge period remaining solvent players can continue to execute rounds of commitments and distributions.
 \end{enumerate}
 
@@ -98,10 +98,10 @@ Rotation out of a channel has the potential risk that a remaining party could be
 
 
 \begin{description}
-\item[lastNettedHand (LNR):] describes the id of the last hand at which the channel has been netted. this is also the hand at which the balance of the participant is valid.
-\item[exitHand:] each participant maintains this flag, which is initialized with 0 and stays unchanged until the participant signals to leave. At that point the participant requests a leave receipt from the oracle, which identifies the latest hand id in the channel. This receipt is submitted to the chain and sets the exit Hand of the participant.
-\item[NettingRequestHand (NRH):] This variable tracks the id of the latest hand that has completed in the state channel. Yet, this variable is only updated in the contract if a participant of the state channel requests to leave.
-\item[NettingRequestTime (NRT):] This variable is set to the current time simultaneously to NRH. It will be used to to measure the challenge period if a dispute arises.
+\item[LastNettedHand (LNH):] Describes the ID of the last hand at which the channel has been netted. this is also the hand at which the balance of the participant is valid.
+\item[ExitHand:] Each participant maintains this flag, which is initialized with 0 and stays unchanged until the participant signals to leave. At that point the participant requests a leave receipt from the oracle, which identifies the latest \(handId\) in the channel. This receipt is submitted to the chain and sets the \(exitHand\) of the participant.
+\item[NettingRequestHand (NRH):] This variable tracks the ID of the latest hand that has completed in the state channel. Yet, this variable is only updated in the contract if a participant of the state channel requests to leave.
+\item[NettingRequestTime (NRT):] This variable is set to the current time simultaneously to \(NRH\). It will be used to to measure the challenge period if a dispute arises.
 \end{description}
 
 Table \ref{fsm-table} shows the state transition of the channel from having an empty seat, to a player joining and playing, to netting and leave. 
@@ -114,7 +114,7 @@ Table \ref{fsm-table} shows the state transition of the channel from having an e
 \begin{tabular}{lccccc}
 \hline
                  & \multicolumn{2}{c}{seat x} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\ 
-                 & balance     & exitHand     & LNH                  & NRH                  & NRT                  \\ \hline
+                 & balance     & ExitHand     & LNH                  & NRH                  & NRT                  \\ \hline
 1) empty         & 0           & 0            & y                    & y                    & 0                    \\
 2) join          & 100         & 0            & y                    & y                    & 0                    \\
 3) play          & 100         & 0            & y                    & y                    & 0                    \\
@@ -124,4 +124,4 @@ Table \ref{fsm-table} shows the state transition of the channel from having an e
 \end{tabular}
 \end{table}
 
-Once the exitHand flag of a leaving participant is set in the contract, other participants can clearly judge to accept or reject receipts in the current round. When, either through agreement, or dispute, the channel is netted beyond a participants exitHand ( LNH >= exitHand ), the participant is payed out and removed from the channel. 
+Once the \(exitHand\) flag of a leaving participant is set in the contract, other participants can clearly judge to accept or reject receipts in the current round. When, either through agreement, or dispute, the channel is netted beyond a participant's \(exitHand\) (\(LNH >= exitHand\)), the participant is payed out and removed from the channel. 
