@@ -1,6 +1,6 @@
 \section{Introduction}
 
-In 2011, Poker Stars and Full Tilt Poker, the biggest poker rooms at the time, were shut down due to bank fraud and money laundering. Players were unable to access their funds, and the day is remembered as "Black Friday"\cite{treasury11}. This and other scandals make players question the trust model of a traditional online poker rooms. The poker room operators manage funds on behalf of users as well as shuffle and keep the cards secret, hence, posing as a trusted third party.
+In 2011, Poker Stars and Full Tilt Poker, the biggest poker rooms at the time, were shut down due to bank fraud and money laundering. Players were unable to access their funds, and the day is remembered as "Black Friday"\cite{treasury11}. This and other scandals make players question the trust model of traditional online poker rooms. The poker room operators manage funds on behalf of users as well as shuffle and keep the cards secret, hence, posing as a trusted third party.
 
 Shamir et al. \cite{shamir81} introduced mental poker, a set of cryptographic problems to play a fair hand of poker over distance without a trusted third party \cite{wikiMental}. This work gave rise to a subfield of cryptography called multiparty computation. The latter enables parties to jointly compute a function over their inputs while keeping those inputs private \cite{wikiMPC}. This could be the solution for a provably fair shuffle guaranteeing the secrecy of the cards without a need of a trusted third party. However, Cleve demonstrated that a fair multiparty computation without an honest majority is impossible \cite{cleve86}.
 
@@ -9,7 +9,7 @@ The basic approach to managing funds and transfers without a trusted third party
 In recent years, the academic study of decentralized cryptocurrencies gave rise to a line of research that seeks to impose fairness in multiparty computation by means of monetary penalties. Kumaresan and Bentov show a scheme in which the parties run an initial setup phase requiring interaction with the Bitcoin blockchain, but thereafter engage in many fair secure computation executions, communicating only among themselves for as long as all parties are honest \cite{bentov14}.
 
 It seems as if the mere performance optimization of blockchain could incentivise a fair execution of the game through multiparty computation as well as make the trusted third party redundant regarding the management of the players' funds. Bloomer and Nishimura introduce the first optimization in this regard to Bitcoin with payment channels, circumventing the timing restrictions of blockchains \cite{bloomer14}. This initial proposal for payment channels is limited to only two participants.
- 
+
 Bentov et al. introduce efficient protocols for amortized secure multiparty computation in combination with smart contracts, allowing first real-time poker games \cite{bentov17}.
 
 To our knowledge all existing multiparty computation protocols require all participants to initiate the game at the same time. While all participants might be available at the start of a tournament, in cash-games participants can sit down or stand up from a table at any time.
@@ -17,9 +17,9 @@ To our knowledge all existing multiparty computation protocols require all parti
 \subsection{Our Contributions}
 
 We extend existing schemes with the following features:
- 
+
 \textbf{Asynchronous channel participation:} all participants have the ability to join and leave the channel at any time without affecting message flow or security of funds.
- 
+
 \textbf{Ability to rebuy:} when a player runs out of money, he is kept in the channel and has the ability to rebuy by interacting with the blockchain.
 
 As a consequence, we are the first to provide a working implementation that has an acceptable user experience for cash-game tables.
