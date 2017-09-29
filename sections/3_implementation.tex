@@ -8,7 +8,7 @@ In appendix A, we provide our reference implementation of smart contract code fo
 
 \subsection{Data Structures}
 
-In addition to the state variables ( \(LNR\), \(exitHand\), \(NRH\), \(NRT\) ), which have been defined in the previous section, two important structures are \(Seats\) and \(Hands\), which we will examine now.
+In addition to the state variables (\(LNR\), \(exitHand\), \(NRH\), \(NRT\)), which have been defined in the previous section, two important structures are \(Seats\) and \(Hands\), which we will examine now.
 
 A table contract holds an array of 2 to 10 \(Seats\), a data-structure being able to hold the data of one seated player at a time, no lap dances allowed. The \(Seat\) is implemented as a struct with the following 4 attributes:
 
@@ -26,7 +26,7 @@ A table contract holds an array of 2 to 10 \(Seats\), a data-structure being abl
 \item[SenderAddr:] The \(senderAddress\) is the address of the wallet used by the player to join the table and holding the player's bankroll.
 \item[SignerAddr:] The \(signerAddress\) is the address of an additional private key created and used under the control of the player to sign receipts about commitments during betting.
 \item[Amount:] The \(amount\) stores the value of tokens that the player chose to transfer to the state channel to be used in bets during the game.
-\item[exitHand:] The \(exitHand\) parameter is used to signal the intention to leave the state channel to other participants. Hence, it is kept at a value of 0, until the player signals to leave the channel. Once the player signals to leave the channel, the \(exitHand\) will take the ID of the latest betting round executed in the state channel in which the player participated.
+\item[ExitHand:] The \(exitHand\) parameter is used to signal the intention to leave the state channel to other participants. Hence, it is kept at a value of 0, until the player signals to leave the channel. Once the player signals to leave the channel, the \(exitHand\) will take the ID of the latest betting round executed in the state channel in which the player participated.
 \end{description}
 
 An additional data structure is maintained in the smart contract which is only used in the case of dispute. An array is used to collect all receipts of commitments and distributions for each betting round. Each \(Hand\) element is implemented as a struct with the following 3 attributes:
@@ -52,11 +52,11 @@ An additional data structure is maintained in the smart contract which is only u
 The contract implements the following functions:
 
 \begin{description}
-\item[tokenFallback():] This function allows new players to join the table by submitting tokens into the control of the smart contract. Already seated players can use this function to rebuy, increasing their balance at the table. 
-\item[leave():] The leave function allows players to signal their intention to leave the table. This function can only be invoked by an active player once. It will trigger a netting request, notifying all other participants about the necessity to settle on the new balances at the end of the current betting round.
-\item[settle():] The settle function receives a resolution, which holds the new balances of all players at a specific hand. The resolution needs to be signed by all players and the oracle alike, to be valid and accepted into the smart contract. A valid resolution will trigger a netting, updating all players' balances and removing players that are signaling to leave the table, if the netting exceeded the players' \(exitHand\).
-\item[submit():] The submit function can be called by anyone, receiving an array of receipts of commitments and distributions. Each receipt is evaluated by sequence identifier and signature, then written into contract storage. Receipts are only accepted into contract storage if the state channel is in a dispute resolution state ( \(LNH < NRH\) ).
-\item[net():] The net function sums up all receipts of commitments and distributions that have been collected in the challenge period. It can only be invoked once the time of the challenge period expired.
+\item[TokenFallback():] This function allows new players to join the table by submitting tokens into the control of the smart contract. Already seated players can use this function to rebuy, increasing their balance at the table. 
+\item[Leave():] The leave function allows players to signal their intention to leave the table. This function can only be invoked by an active player once. It will trigger a netting request, notifying all other participants about the necessity to settle on the new balances at the end of the current betting round.
+\item[Settle():] The settle function receives a resolution, which holds the new balances of all players at a specific hand. The resolution needs to be signed by all players and the oracle alike, to be valid and accepted into the smart contract. A valid resolution will trigger a netting, updating all players' balances and removing players that are signaling to leave the table, if the netting exceeded the players' \(exitHand\).
+\item[Submit():] The submit function can be called by anyone, receiving an array of receipts of commitments and distributions. Each receipt is evaluated by sequence identifier and signature, then written into contract storage. Receipts are only accepted into contract storage if the state channel is in a dispute resolution state (\(LNH < NRH\)).
+\item[Net():] The net function sums up all receipts of commitments and distributions that have been collected in the challenge period. It can only be invoked once the time of the challenge period expired.
 \end{description}
 
 
@@ -82,11 +82,11 @@ We have adopted ERC223, which solves these disadvantages, by implementing a stan
     );
 \end{verbatim}
 
-The table contract implements this function to accept NTZ transaction when players join the table and maps the parameters as follows:
+The table contract implements this function to accept token transaction when players join the table and maps the parameters as follows:
 
 \begin{description}
-\item[\_from] Is the token sender.
-\item[\_value] Is amount of incoming tokens.
+\item[\_from] The token sender.
+\item[\_value] The amount of incoming tokens.
 \item[\_data] The first 20 bytes carry the \(signerAddress\).
 \end{description}
 

@@ -1,6 +1,6 @@
 \section{Introduction}
 
-In 2011, Poker Stars and Full Tilt Poker, the biggest poker rooms at the time, were shut down due to bank fraud and money laundering. Players were unable to access their funds, and the day is remembered as "Black Friday"\cite{treasury11}. This and other scandals make players question the trust model of traditional online poker rooms. The poker room operators manage funds on behalf of users as well as shuffle and keep the cards secret, hence, posing as a trusted third party.
+In 2011, PokerStars and Full Tilt Poker, the biggest poker rooms at the time, were shut down due to bank fraud and money laundering. Players were unable to access their funds, and the day is remembered as "Black Friday" \cite{treasury11}. This and other scandals make players question the trust model of traditional online poker rooms. The poker room operators manage funds on behalf of users as well as shuffle and keep the cards secret, hence, posing as a trusted third party.
 
 Shamir et al. \cite{shamir81} introduced mental poker, a set of cryptographic problems to play a fair hand of poker over distance without a trusted third party \cite{wikiMental}. This work gave rise to a subfield of cryptography called multiparty computation. The latter enables parties to jointly compute a function over their inputs while keeping those inputs private \cite{wikiMPC}. This could be the solution for a provably fair shuffle guaranteeing the secrecy of the cards without a need of a trusted third party. However, Cleve demonstrated that a fair multiparty computation without an honest majority is impossible \cite{cleve86}.
 
@@ -18,9 +18,9 @@ To our knowledge all existing multiparty computation protocols require all parti
 
 We extend existing schemes with the following features:
 
-\textbf{Asynchronous channel participation:} all participants have the ability to join and leave the channel at any time without affecting message flow or security of funds.
+\textbf{Asynchronous channel participation:} All participants have the ability to join and leave the channel at any time without affecting message flow or security of funds.
 
-\textbf{Ability to rebuy:} when a player runs out of money, he is kept in the channel and has the ability to rebuy by interacting with the blockchain.
+\textbf{Ability to rebuy:} When a player runs out of money, he is kept in the channel and has the ability to rebuy by interacting with the blockchain.
 
 As a consequence, we are the first to provide a working implementation that has an acceptable user experience for cash-game tables.
 
