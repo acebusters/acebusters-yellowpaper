@@ -1,3 +1,4 @@
-#Multiparty State Channels - Enabling real-time Poker on Ethereum
+# Multiparty State Channels - Enabling Real-Time Poker on Ethereum
 
-[Acebusters Yellow Paper](https://www.acebusters.com/files/acebusters_yellowpaper.pdf)
+The paper is written with sharedlatex. The latest version as PDF is available at 
+[www.acebusters.com/files/acebusters_yellowpaper.pdf](https://www.acebusters.com/files/acebusters_yellowpaper.pdf).
