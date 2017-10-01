@@ -1,5 +1,7 @@
-# Multiparty State Channels
-## Enabling Real-Time Poker on Ethereum
+[![Discord](https://img.shields.io/discord/102860784329052160.svg)](https://discordapp.com/invite/7PesDTZ)
 
-The paper is written with sharedlatex. The latest version as PDF is available at 
+# yellowpaper
+
+The latest version as PDF is available at 
 [www.acebusters.com/files/acebusters_yellowpaper.pdf](https://www.acebusters.com/files/acebusters_yellowpaper.pdf).
+
